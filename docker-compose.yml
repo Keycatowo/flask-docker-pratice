@@ -10,6 +10,16 @@ services:
    - ENV=development
    - PORT=4000
    - DB=mongodb://mongodb:27017/todoDev
+ mongodb:
+  image: mongo:4.0
+  container_name: "mongodb"
+  environment:
+   - MONGO_LOG_DIR=/dev/null
+  volumes:
+   - ./data/db:/data/db
+  ports:
+   - 27017:27017
+  command: mongod --smallfiles --logpath=/dev/null # --quiet
 networks:
  default:
   name: web_dev
